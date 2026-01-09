@@ -20,6 +20,32 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Seed mock users (Supabase Auth)
+
+This repo includes a seeding script that creates 5 mock users in Supabase Auth (Admin API) and upserts matching rows into `public.members`.
+
+This project is intended to be Bun-first (created with `bunx`).
+
+1) Create `.env.local` from [.env.local.example](.env.local.example)
+
+- `NEXT_PUBLIC_SUPABASE_URL`: Project Settings → API → Project URL
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Project Settings → API → `anon` key
+- `SUPABASE_SERVICE_ROLE_KEY`: Project Settings → API → `service_role` key (server-side only)
+
+2) Run the seed script
+
+```bash
+bun run seed:auth
+```
+
+If you prefer Node/npm, you can still run scripts with npm, but try to stick to one package manager to avoid lockfile drift.
+
+Optional: wipe and recreate the 5 users (useful if you previously inserted into `auth.users` directly)
+
+```bash
+bun run seed:auth -- --reset
+```
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
